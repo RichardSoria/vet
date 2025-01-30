@@ -8,36 +8,37 @@ import { ToastContainer, toast } from 'react-toastify'
 
 export default function Restablecer() {
     const navigate = useNavigate()
-    const{ token } = useParams()
-    const [ tokenBack, setTokenBack ] = useState(false)
+    const { token } = useParams()
+    const [tokenBack, setTokenBack] = useState(false)
 
     const [form, setForm] = useState({
         password: "",
-        confirmPassword:""
+        confirmpassword: ""
     })
 
     const handleChange = (e) => {
         setForm({
             ...form,
-            [e.target.name]:e.target.value
+            [e.target.name]: e.target.value
         })
+        console.log(form)
     }
 
-    const handleSubmit = async(e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
         try {
             const url = `http://localhost:3000/api/nuevo-password/${token}`
-            const respuesta = await axios.post(url,form)
+            const respuesta = await axios.post(url, form)
             setForm({})
-						toast.success(respuesta.data.msg)
-						setTimeout(() => {
+            toast.success(respuesta.data.msg)
+            setTimeout(() => {
                 navigate('/login');
             }, 3000);
-        } catch (error) { 
+        } catch (error) {
             toast.error(error.response.data.msg)
         }
     }
-    
+
     const verifyToken = async () => {
         try {
             const url = `http://localhost:3000/api/recuperar-password/${token}`
@@ -51,10 +52,10 @@ export default function Restablecer() {
     useEffect(() => {
         verifyToken()
     }, [])
-    
+
     return (
         <div className="flex flex-col items-center justify-center">
-        <ToastContainer />
+            <ToastContainer />
             <h1 className="text-3xl font-semibold mb-2 text-center uppercase  text-gray-500">Welcome again</h1>
             <small className="text-gray-400 block my-4 text-sm">Please enter your details</small>
             <img className="object-cover h-80 w-80 rounded-full border-4 border-solid border-slate-600" src={logoDog} alt="image description" />

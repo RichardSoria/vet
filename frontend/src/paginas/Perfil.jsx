@@ -8,7 +8,6 @@ import AuthContext from '../context/AuthProvider'
 const Perfil = () => {
 
     const { auth } = useContext(AuthContext)
-
     return (
         <>
             <div>

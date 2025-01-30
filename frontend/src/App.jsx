@@ -18,6 +18,7 @@ import { AuthProvider } from './context/AuthProvider'
 import {PrivateRoute} from './routes/PrivateRoute'
 import PrivateRouteWithRole from './routes/PrivateRouteWithRole'
 import { TratamientosProvider } from './context/TratamientosProvides'
+import Chat from './paginas/Chat'
 
 
 function App() {
@@ -55,6 +56,7 @@ function App() {
                         </PrivateRouteWithRole>
                       } />
                       <Route path='actualizar/:id' element={<Actualizar />} />
+                      <Route path='chat' element={<Chat />} />
                     </Route>
                   </Routes>
                 </PrivateRoute>}>

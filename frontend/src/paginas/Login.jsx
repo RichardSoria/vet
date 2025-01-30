@@ -30,8 +30,7 @@ const Login = () => {
         try {
             const respuesta = await axios.post(url, form)
             localStorage.setItem('token', respuesta.data.token)
-            localStorage.setItem('rol', respuesta.data.rol)
-            console.log(respuesta.data)
+    
             setAuth(respuesta.data)
             navigate('/dashboard')
             toast.success(response.data.msg)

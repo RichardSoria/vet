@@ -200,8 +200,6 @@ const recuperarPassword = async(req,res)=>{
 
 
 
-
-
 // Método para comprobar el token
 const comprobarTokenPasword = async (req,res)=>{
     if(!(req.params.token)) return res.status(404).json({msg:"Lo sentimos, no se puede validar la cuenta"})
@@ -222,7 +220,7 @@ const comprobarTokenPasword = async (req,res)=>{
 const nuevoPassword = async (req,res)=>{
     const{password,confirmpassword} = req.body
     if (Object.values(req.body).includes("")) return res.status(404).json({msg:"Lo sentimos, debes llenar todos los campos"})
-    if(password != confirmpassword) return res.status(404).json({msg:"Lo sentimos, los passwords no coinciden"})
+    if(password !== confirmpassword) return res.status(404).json({msg:"Lo sentimos, los passwords no coinciden"})
     const veterinarioBDD = await Veterinario.findOne({token:req.params.token})
     if(veterinarioBDD?.token !== req.params.token) return res.status(404).json({msg:"Lo sentimos, no se puede validar la cuenta"})
     veterinarioBDD.token = null

@@ -3,6 +3,7 @@ import AuthContext from "../../context/AuthProvider"
 
 export const CardPerfilPaciente = () => {
     const { auth } = useContext(AuthContext)
+    
     return (
         <div className="bg-white border border-slate-200 h-auto p-4 
                         flex flex-col items-center justify-between shadow-xl rounded-lg">

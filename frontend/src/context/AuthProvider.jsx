@@ -6,9 +6,10 @@ const AuthContext = createContext()
 const AuthProvider = ({ children }) => {
     const [auth, setAuth] = useState({});
 
-    const perfil = async (token, rol) => {
+    const perfil = async (token) => {
         try {
-            // Set the correct URL based on the role
+            // desestructuramos el token y obtenemos el rol
+            const {rol} = JSON.parse(atob(token.split('.')[1]));
             const url = rol === 'veterinario' 
                 ? 'http://localhost:3000/api/perfil' 
                 : 'http://localhost:3000/api/paciente/perfil';
@@ -28,9 +29,8 @@ const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         const token = localStorage.getItem('token');
-        const rol = localStorage.getItem('rol');
-        if (token && 'paciente') {
-            perfil(token, rol);
+        if (token) {
+            perfil(token);
         }
     }, []);
 
